@@ -1,0 +1,17 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<h2 class="mb-3">Available Jobs</h2>
+<div class="list-group">
+  {% for job in jobs %}
+    <a class="list-group-item list-group-item-action" href="{% url 'job_detail' job.id %}">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ job.title }} — {{ job.company }}</h5>
+        <small>{{ job.posted_date|date:"M d, Y" }}</small>
+      </div>
+      <small class="text-muted">{{ job.location }}</small>
+    </a>
+  {% empty %}
+    <p>No jobs posted yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}
